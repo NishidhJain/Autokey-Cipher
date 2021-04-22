@@ -56,6 +56,14 @@ p {
 	text-align: justify;
 }
 
+.formula {
+	font-size: 1.1rem;
+}
+
+.section-implementation {
+	margin-top: 1rem;
+}
+
 .inpt,
 .textarea {
 	width: 100%;
@@ -70,6 +78,11 @@ p {
 .inpt:focus,
 .textarea:focus {
 	outline: none;
+}
+
+.cttext {
+	text-transform: uppercase;
+	letter-spacing: 1px;
 }
 
 .btn {
@@ -90,7 +103,7 @@ p {
 
 .answer {
 	padding: 0.6rem 1rem;
-	margin: 1.5rem 0 0;
+	margin: 1.5rem 0 1rem;
 	background-color: rgba(33, 32, 156, 0.1);
 	border-radius: 5px;
 	color: #21209c;
@@ -121,4 +134,8 @@ p {
 
 .decrypted-text {
 	text-transform: lowercase;
+}
+
+.mb {
+	height: 2rem;
 }

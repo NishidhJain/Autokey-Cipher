@@ -23,6 +23,9 @@
 			<article class="encryption">
 				<h2 class="section-title">Encryption</h2>
 				<p class="section-description"></p>
+				<code class="formula"
+					>CT<sub>i</sub> = ( PT<sub>i</sub> + K<sub>i</sub> ) mod 26</code
+				>
 
 				<div class="section-implementation">
 					<!-- <label for="key">Key</label> -->
@@ -57,6 +60,9 @@
 			<article class="decryption">
 				<h2 class="section-title">Decryption</h2>
 				<p class="section-description"></p>
+				<code class="formula"
+					>PT<sub>i</sub> = ( CT<sub>i</sub> - K<sub>i</sub> ) mod 26</code
+				>
 				<div class="section-implementation">
 					<form action="" class="form2">
 						<input
@@ -69,7 +75,7 @@
 						<!-- <label for="ct">Cipher Text</label> -->
 						<textarea
 							id="ct"
-							class="textarea"
+							class="textarea cttext"
 							placeholder="Enter cipher text here..."
 							rows="5"
 							required
@@ -78,13 +84,18 @@
 						<input type="submit" id="decryptBtn" class="btn" value="Decrypt" />
 					</form>
 
-					<p class="answer">
+					<!-- <p class="answer">
 						Plain Text is : &nbsp;<textarea class="decrypted-text"></textarea>
-					</p>
+					</p> -->
+
+					<div class="answer">
+						<p>Plain Text is : &nbsp;</p>
+						<textarea class="decrypted-text" readonly></textarea>
+					</div>
 				</div>
 			</article>
 		</section>
-
+		<div class="mb"></div>
 		<script type="text/javascript" src="main.js"></script>
 	</body>
 </html>
