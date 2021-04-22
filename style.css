@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #eff8ff;
+	font-family: 'Poppins', sans-serif;
+}
+
+h1 {
+	font-size: 2.3rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+}
+
+p {
+	font-size: 1rem;
+}
+
+.container {
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.title {
+	text-align: center;
+	margin-top: 2rem;
+	letter-spacing: 1px;
+	color: #21209c;
+}
+
+.introduction,
+.encryption,
+.decryption {
+	padding: 1rem;
+}
+
+.introduction {
+	margin-top: 1.5rem;
+}
+
+.section-title {
+	margin-bottom: 1rem;
+	font-weight: 600;
+}
+
+.section-description {
+	line-height: 2;
+	text-align: justify;
+}
+
+.inpt,
+.textarea {
+	width: 100%;
+	padding: 0.6rem;
+	padding-left: 1.2rem;
+	border: 1px solid #b8b5ff;
+	border-radius: 5px;
+	font-size: 1rem;
+	margin: 1rem 0;
+	resize: vertical;
+}
+.inpt:focus,
+.textarea:focus {
+	outline: none;
+}
+
+.btn {
+	padding: 0.5rem 1.5rem;
+	border-radius: 50px;
+	border: 2px solid #21209c;
+	color: #21209c;
+	background-color: #fff;
+	font-size: 1rem;
+	font-weight: 600;
+	letter-spacing: 1px;
+	transition: all 0.3s;
+}
+.btn:hover {
+	color: #fff;
+	background-color: #21209c;
+}
+
+.answer {
+	padding: 0.6rem 1rem;
+	margin: 1.5rem 0 0;
+	background-color: rgba(33, 32, 156, 0.1);
+	border-radius: 5px;
+	color: #21209c;
+	font-weight: 500;
+	display: flex;
+}
+
+.encrypted-text,
+.decrypted-text {
+	padding: 0 0.5rem;
+	font-weight: 600;
+	font-size: 1.2rem;
+	letter-spacing: 1px;
+	color: #21209c;
+	background: transparent;
+	border: 0;
+	flex: 1;
+	resize: vertical;
+}
+.encrypted-text:focus,
+.decrypted-text:focus {
+	outline: none;
+}
+
+.encrypted-text {
+	text-transform: uppercase;
+}
+
+.decrypted-text {
+	text-transform: lowercase;
+}

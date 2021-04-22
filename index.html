@@ -2,20 +2,88 @@
 <html>
 	<head>
 		<title>Autokey Cipher</title>
+		<link rel="stylesheet" href="./style.css" />
 	</head>
 	<body>
-		<label for="key">Key</label>
-		<input type="text" id="key" />
+		<section class="container">
+			<h1 class="title">AutoKey Cipher</h1>
 
-		<label for="pt">Plain Text</label>
-		<textarea id="pt"></textarea>
+			<article class="introduction">
+				<h2 class="section-title">Introduction</h2>
+				<p class="section-description">
+					This Autokey is polyalphabet Substitution cipher. In this cipher, the
+					key is a stream of subkeys which is each subkey is used to encrypt the
+					corresponding character in the plaintext. It is closely related to the
+					Vigenere cipher but uses a different method of generating the key. It
+					was invented by Blaise de Vigenère in 1586. In general, more secure
+					than the Vigenere cipher.
+				</p>
+			</article>
 
-		<button type="button" id="encryptBtn">Encrypt</button>
+			<article class="encryption">
+				<h2 class="section-title">Encryption</h2>
+				<p class="section-description"></p>
 
-		<label for="ct">Cipher Text</label>
-		<textarea id="ct"></textarea>
+				<div class="section-implementation">
+					<!-- <label for="key">Key</label> -->
+					<form class="form1">
+						<input
+							type="text"
+							id="ptkey"
+							class="inpt"
+							placeholder="Enter key here..."
+							required
+						/>
 
-		<button type="button" id="decryptBtn">Decrypt</button>
+						<!-- <label for="pt">Plain Text</label> -->
+						<textarea
+							id="pt"
+							class="textarea"
+							placeholder="Enter plaintext here..."
+							rows="5"
+							required
+							spellcheck="false"
+						></textarea>
+
+						<input type="submit" id="encryptBtn" class="btn" value="Encrypt" />
+					</form>
+					<div class="answer">
+						<p>Cipher Text is : &nbsp;</p>
+						<textarea class="encrypted-text" readonly></textarea>
+					</div>
+				</div>
+			</article>
+
+			<article class="decryption">
+				<h2 class="section-title">Decryption</h2>
+				<p class="section-description"></p>
+				<div class="section-implementation">
+					<form action="" class="form2">
+						<input
+							type="text"
+							id="ctkey"
+							class="inpt"
+							placeholder="Enter key here..."
+							required
+						/>
+						<!-- <label for="ct">Cipher Text</label> -->
+						<textarea
+							id="ct"
+							class="textarea"
+							placeholder="Enter cipher text here..."
+							rows="5"
+							required
+							spellcheck="false"
+						></textarea>
+						<input type="submit" id="decryptBtn" class="btn" value="Decrypt" />
+					</form>
+
+					<p class="answer">
+						Plain Text is : &nbsp;<textarea class="decrypted-text"></textarea>
+					</p>
+				</div>
+			</article>
+		</section>
 
 		<script type="text/javascript" src="main.js"></script>
 	</body>

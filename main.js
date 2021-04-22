@@ -2,11 +2,32 @@ const encryptBTN = document.getElementById('encryptBtn');
 const decryptBTN = document.getElementById('decryptBtn');
 const plainText = document.getElementById('pt');
 const cipherText = document.getElementById('ct');
-const key = document.getElementById('key');
+const ptkey = document.getElementById('ptkey');
+const ctkey = document.getElementById('ctkey');
+const encryptedText = document.querySelector('.encrypted-text');
+const decryptedText = document.querySelector('.decrypted-text');
+const form1 = document.querySelector('.form1');
+const form2 = document.querySelector('.form2');
 
 const alphabets = 'abcdefghijklmnopqrstuvwxyz';
 
+function removeSpace(gStr) {
+	let str = '';
+	let gStrLen = gStr.length;
+
+	for (let i = 0; i < gStrLen; i++) {
+		if (gStr[i] !== ' ') {
+			str += gStr[i];
+		}
+	}
+
+	return str;
+}
+
 function encrypt(pt, key) {
+	const ptWithoutSpace = removeSpace(pt);
+	const keyWithoutSpace = removeSpace(key);
+	console.log('Without Space : ', ptWithoutSpace, keyWithoutSpace);
 	console.log('Hello inside encrypt', pt, key);
 
 	// encryption logic
@@ -33,6 +54,10 @@ function encrypt(pt, key) {
 	let ans = '';
 
 	for (let i = 0; i < ptLen; i++) {
+		if (pt[i] == ' ') {
+			continue;
+		}
+
 		const ptCharValue = alphabets.indexOf(pt[i]);
 		const keyValue = alphabets.indexOf(key[i]);
 		const remainder = (ptCharValue + keyValue) % 26;
@@ -45,7 +70,8 @@ function encrypt(pt, key) {
 	}
 	console.log('CT is : ', ans.toUpperCase());
 
-	cipherText.value = ans.toUpperCase();
+	// cipherText.value = ans.toUpperCase();
+	encryptedText.innerHTML = ans;
 }
 
 function decrypt(ct, key) {
@@ -97,13 +123,14 @@ function decrypt(ct, key) {
 	);
 	console.log('Plain Text is : ', ans);
 
-	plainText.value = ans;
+	// plainText.value = ans;
+	decryptedText.innerHTML = ans;
 }
 
 encryptBTN.addEventListener('click', (evt) => {
 	// evt.preventDefault();
 	const ptVal = plainText.value.toLowerCase();
-	const keyVal = key.value.toLowerCase();
+	const keyVal = ptkey.value.toLowerCase();
 
 	encrypt(ptVal, keyVal);
 });
@@ -111,7 +138,19 @@ encryptBTN.addEventListener('click', (evt) => {
 decryptBTN.addEventListener('click', (evt) => {
 	// evt.preventDefault();
 	const ctVal = cipherText.value.toLowerCase();
-	const keyVal = key.value.toLowerCase();
+	const keyVal = ctkey.value.toLowerCase();
 
 	decrypt(ctVal, keyVal);
+});
+
+// function submitForm(evt) {
+// 	evt.preventDefault();
+// }
+
+form2.addEventListener('submit', (evt) => {
+	evt.preventDefault();
+});
+
+form1.addEventListener('submit', (evt) => {
+	evt.preventDefault();
 });
