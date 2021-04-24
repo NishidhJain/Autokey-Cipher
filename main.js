@@ -8,6 +8,10 @@ const encryptedText = document.querySelector('.encrypted-text');
 const decryptedText = document.querySelector('.decrypted-text');
 const form1 = document.querySelector('.form1');
 const form2 = document.querySelector('.form2');
+const keyOneErrMsg = document.querySelector('.key1err');
+const keyTwoErrMsg = document.querySelector('.key2err');
+const ptErrMsg = document.querySelector('.pterr');
+const ctErrMsg = document.querySelector('.cterr');
 
 const alphabets = 'abcdefghijklmnopqrstuvwxyz';
 
@@ -20,13 +24,58 @@ function removeSpace(gStr) {
 			str += gStr[i];
 		}
 	}
-
 	return str;
+}
+
+function onlyCharacters(checkStr) {
+	const strLength = checkStr.length;
+	let isOnlyCharac = true;
+
+	for (let b = 0; b < strLength; b++) {
+		if (!alphabets.includes(checkStr[b])) {
+			isOnlyCharac = false;
+			break;
+		}
+	}
+	return isOnlyCharac;
 }
 
 function encryption(pt, key) {
 	const ptWithoutSpace = removeSpace(pt);
 	let keyWithoutSpace = removeSpace(key);
+
+	let err = false;
+
+	// check for errors in key
+	if (keyWithoutSpace == '') {
+		err = true;
+		keyOneErrMsg.innerHTML = 'Please enter the key';
+		keyOneErrMsg.classList.add('showErr');
+	} else if (!onlyCharacters(keyWithoutSpace)) {
+		err = true;
+		keyOneErrMsg.innerHTML = 'Please enter only characters!';
+		keyOneErrMsg.classList.add('showErr');
+	} else {
+		keyOneErrMsg.classList.remove('showErr');
+	}
+
+	// check for errors in plaintext
+	if (ptWithoutSpace == '') {
+		err = true;
+		ptErrMsg.innerHTML = 'Please enter the plaintext!';
+		ptErrMsg.classList.add('showErr');
+	} else if (!onlyCharacters(ptWithoutSpace)) {
+		err = true;
+		ptErrMsg.innerHTML = 'Please enter only charcters!';
+		ptErrMsg.classList.add('showErr');
+	} else {
+		ptErrMsg.classList.remove('showErr');
+	}
+
+	if (err) {
+		return;
+	}
+
 	console.log('Without Space : ', ptWithoutSpace, keyWithoutSpace);
 	console.log('Hello inside encrypt', pt, key);
 
@@ -72,6 +121,38 @@ function decryption(ct, key) {
 	const ctWithoutSpace = removeSpace(ct);
 	let keyWithoutSpace = removeSpace(key);
 
+	let err = false;
+
+	// check for errors in key
+	if (keyWithoutSpace == '') {
+		err = true;
+		keyTwoErrMsg.innerHTML = 'Please enter the key!';
+		keyTwoErrMsg.classList.add('showErr');
+	} else if (!onlyCharacters(keyWithoutSpace)) {
+		err = true;
+		keyTwoErrMsg.innerHTML = 'Please enter only characters!';
+		keyTwoErrMsg.classList.add('showErr');
+	} else {
+		keyTwoErrMsg.classList.remove('showErr');
+	}
+
+	// check for errors in ciphertext
+	if (ctWithoutSpace == '') {
+		err = true;
+		ctErrMsg.innerHTML = 'Please enter the ciphertext';
+		ctErrMsg.classList.add('showErr');
+	} else if (!onlyCharacters(ctWithoutSpace)) {
+		err = true;
+		ctErrMsg.innerHTML = 'Please enter only charcters!';
+		ctErrMsg.classList.add('showErr');
+	} else {
+		ctErrMsg.classList.remove('showErr');
+	}
+
+	if (err) {
+		return;
+	}
+
 	let difference = 0;
 	let cnt = 0;
 	let ans = '';
@@ -85,6 +166,13 @@ function decryption(ct, key) {
 	if (keyLen < ctLen) {
 		difference = ctLen - keyLen;
 		console.log('diff of key size in decrypt:', difference);
+		console.log(
+			'After making length of key and ct equal : ',
+			ctWithoutSpace,
+			keyWithoutSpace,
+			ctLen,
+			keyWithoutSpace.length
+		);
 	}
 
 	for (let j = 0; j < ctLen; j++) {
@@ -111,13 +199,6 @@ function decryption(ct, key) {
 		}
 	}
 
-	console.log(
-		'After making length of key and ct equal : ',
-		ctWithoutSpace,
-		keyWithoutSpace,
-		ctLen,
-		keyWithoutSpace.length
-	);
 	console.log('Plain Text is : ', ans);
 
 	decryptedText.innerHTML = ans;

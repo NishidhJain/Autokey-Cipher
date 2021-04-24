@@ -58,6 +58,7 @@ p {
 
 .formula {
 	font-size: 1.1rem;
+	/* font-weight: 600; */
 }
 
 .section-implementation {
@@ -72,7 +73,7 @@ p {
 	border: 1px solid #b8b5ff;
 	border-radius: 5px;
 	font-size: 1rem;
-	margin: 1rem 0;
+	margin: 1rem 0 0.2rem;
 	resize: vertical;
 }
 .inpt:focus,
@@ -95,6 +96,7 @@ p {
 	font-weight: 600;
 	letter-spacing: 1px;
 	transition: all 0.3s;
+	margin-top: 0.5rem;
 }
 .btn:hover {
 	color: #fff;
@@ -115,7 +117,7 @@ p {
 .decrypted-text {
 	padding: 0 0.5rem;
 	font-weight: 600;
-	font-size: 1.2rem;
+	font-size: 1.3rem;
 	letter-spacing: 1px;
 	color: #21209c;
 	background: transparent;
@@ -138,4 +140,20 @@ p {
 
 .mb {
 	height: 2rem;
+}
+
+.key1err,
+.key2err,
+.pterr,
+.cterr {
+	display: none;
+}
+
+.showErr {
+	display: block;
+	color: red;
+	letter-spacing: 1px;
+	margin-bottom: 0.5rem;
+	text-indent: 5px;
+	font-size: 0.9rem;
 }

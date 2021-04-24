@@ -12,11 +12,11 @@
 			<article class="introduction">
 				<h2 class="section-title">Introduction</h2>
 				<p class="section-description">
-					This Autokey is polyalphabet Substitution cipher. In this cipher, the
-					key is a stream of subkeys which is each subkey is used to encrypt the
-					corresponding character in the plaintext. It is closely related to the
-					Vigenere cipher but uses a different method of generating the key. It
-					was invented by Blaise de Vigenère in 1586. In general, more secure
+					This Autokey is polyalphabetic Substitution cipher. In this cipher,
+					the key is a stream of subkeys which is each subkey is used to encrypt
+					the corresponding character in the plaintext. It is closely related to
+					the Vigenere cipher but uses a different method of generating the key.
+					It was invented by Blaise de Vigenère in 1586. In general, more secure
 					than the Vigenere cipher.
 				</p>
 			</article>
@@ -36,8 +36,8 @@
 							id="ptkey"
 							class="inpt"
 							placeholder="Enter key here..."
-							required
 						/>
+						<p class="key1err"></p>
 
 						<!-- <label for="pt">Plain Text</label> -->
 						<textarea
@@ -45,9 +45,9 @@
 							class="textarea"
 							placeholder="Enter plaintext here..."
 							rows="5"
-							required
 							spellcheck="false"
 						></textarea>
+						<p class="pterr"></p>
 
 						<input type="submit" id="encryptBtn" class="btn" value="Encrypt" />
 					</form>
@@ -71,17 +71,18 @@
 							id="ctkey"
 							class="inpt"
 							placeholder="Enter key here..."
-							required
 						/>
+						<p class="key2err"></p>
 						<!-- <label for="ct">Cipher Text</label> -->
 						<textarea
 							id="ct"
 							class="textarea cttext"
 							placeholder="Enter cipher text here..."
 							rows="5"
-							required
 							spellcheck="false"
 						></textarea>
+						<p class="cterr"></p>
+
 						<input type="submit" id="decryptBtn" class="btn" value="Decrypt" />
 					</form>
 
