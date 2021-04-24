@@ -24,74 +24,72 @@ function removeSpace(gStr) {
 	return str;
 }
 
-function encrypt(pt, key) {
+function encryption(pt, key) {
 	const ptWithoutSpace = removeSpace(pt);
-	const keyWithoutSpace = removeSpace(key);
+	let keyWithoutSpace = removeSpace(key);
 	console.log('Without Space : ', ptWithoutSpace, keyWithoutSpace);
 	console.log('Hello inside encrypt', pt, key);
 
 	// encryption logic
-	const ptLen = pt.length;
-	const keyLen = key.length;
-	console.log(ptLen, keyLen);
+	const ptLen = ptWithoutSpace.length;
+	const keyLen = keyWithoutSpace.length;
 
 	if (keyLen < ptLen) {
 		const diff = ptLen - keyLen;
-		const extra = pt.slice(0, diff);
+		const extra = ptWithoutSpace.slice(0, diff);
 		console.log('diff', diff, extra);
-		key = key.concat(extra);
-		console.log('New Key : ', key);
+		keyWithoutSpace = keyWithoutSpace.concat(extra);
+		console.log('New Key : ', keyWithoutSpace);
 	}
 
 	console.log(
 		'After making length of key and pt equal : ',
-		pt,
-		key,
+		ptWithoutSpace,
+		keyWithoutSpace,
 		ptLen,
-		key.length
+		keyWithoutSpace.length
 	);
 
 	let ans = '';
 
 	for (let i = 0; i < ptLen; i++) {
-		if (pt[i] == ' ') {
-			continue;
-		}
-
-		const ptCharValue = alphabets.indexOf(pt[i]);
-		const keyValue = alphabets.indexOf(key[i]);
+		const ptCharValue = alphabets.indexOf(ptWithoutSpace[i]);
+		const keyValue = alphabets.indexOf(keyWithoutSpace[i]);
 		const remainder = (ptCharValue + keyValue) % 26;
 		console.log(
-			`Encryption of ${pt[i]} ${ptCharValue} and ${
-				key[i]
+			`Encryption of ${ptWithoutSpace[i]} ${ptCharValue} and ${
+				keyWithoutSpace[i]
 			} ${keyValue} and rem is ${remainder} ${alphabets.charAt(remainder)}`
 		);
 		ans += alphabets.charAt(remainder);
 	}
 	console.log('CT is : ', ans.toUpperCase());
 
-	// cipherText.value = ans.toUpperCase();
 	encryptedText.innerHTML = ans;
 }
 
-function decrypt(ct, key) {
+function decryption(ct, key) {
+	const ctWithoutSpace = removeSpace(ct);
+	let keyWithoutSpace = removeSpace(key);
+
 	let difference = 0;
 	let cnt = 0;
 	let ans = '';
-	const ctLen = ct.length;
-	const keyLen = key.length;
+	const ctLen = ctWithoutSpace.length;
+	const keyLen = keyWithoutSpace.length;
 
 	console.log('Hello inside decrypt', ct, key);
+	console.log('Without Space : ', ctWithoutSpace, keyWithoutSpace);
 
 	// decryption logic
 	if (keyLen < ctLen) {
 		difference = ctLen - keyLen;
-		console.log('diff in decrypt:', difference);
+		console.log('diff of key size in decrypt:', difference);
 	}
 
 	for (let j = 0; j < ctLen; j++) {
-		const ctCharValue = alphabets.indexOf(ct[j]);
-		const keyValue = alphabets.indexOf(key[j]);
+		const ctCharValue = alphabets.indexOf(ctWithoutSpace[j]);
+		const keyValue = alphabets.indexOf(keyWithoutSpace[j]);
 		let remainder = (ctCharValue - keyValue) % 26;
 
 		if (remainder < 0) {
@@ -99,16 +97,15 @@ function decrypt(ct, key) {
 		}
 
 		console.log(
-			`Decryption of ${ct[j]} ${ctCharValue} and ${
-				key[j]
+			`Decryption of ${ctWithoutSpace[j]} ${ctCharValue} and ${
+				keyWithoutSpace[j]
 			} ${keyValue} and rem is ${remainder} ${alphabets.charAt(remainder)}`
 		);
 		ans += alphabets.charAt(remainder);
-		// console.log('remainder ans : ', remainder, ans);
 
 		// append the characters if key size is less than cipher text size
 		if (difference != 0) {
-			key += ans[cnt];
+			keyWithoutSpace += ans[cnt];
 			cnt++;
 			difference--;
 		}
@@ -116,36 +113,29 @@ function decrypt(ct, key) {
 
 	console.log(
 		'After making length of key and ct equal : ',
-		ct,
-		key,
+		ctWithoutSpace,
+		keyWithoutSpace,
 		ctLen,
-		key.length
+		keyWithoutSpace.length
 	);
 	console.log('Plain Text is : ', ans);
 
-	// plainText.value = ans;
 	decryptedText.innerHTML = ans;
 }
 
 encryptBTN.addEventListener('click', (evt) => {
-	// evt.preventDefault();
 	const ptVal = plainText.value.toLowerCase();
 	const keyVal = ptkey.value.toLowerCase();
 
-	encrypt(ptVal, keyVal);
+	encryption(ptVal, keyVal);
 });
 
 decryptBTN.addEventListener('click', (evt) => {
-	// evt.preventDefault();
 	const ctVal = cipherText.value.toLowerCase();
 	const keyVal = ctkey.value.toLowerCase();
 
-	decrypt(ctVal, keyVal);
+	decryption(ctVal, keyVal);
 });
-
-// function submitForm(evt) {
-// 	evt.preventDefault();
-// }
 
 form2.addEventListener('submit', (evt) => {
 	evt.preventDefault();
